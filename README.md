@@ -23,3 +23,12 @@ Dalam konteks `Subscriber`, AMPQ di implementasikan untuk mengubungkan antrean p
 ![Simulation slow subscriber](assets/images/SimulationSlowSubscriber.png)
 
 Ketika saya mensimulasikan *slow subscriber* dan memasangkan *delay* satu detik ke *subscriber* untuk penerimaan data dari *message broker*, terdapat sekitar 25 *queued message* yang terdata. Hal ini terjadi karena ketika *publisher* saya buat mengirimkan beberapa data dalam waktu singkat, *subscriber* tidak dapat menerima data tersebut secara langsung, sehingga terbentuklah *message queue* yang menunggu penemerimaan data dari *subscriber* satu persatu. Semakin banyak data yang dikirim *publisher* semakin besar *message queue* karena akan semakin banyak pesan penerimaannya tertunda.
+
+### Running at least three subscribers
+
+
+![Running at least three subscribers](assets/images/RunningThreeSubscriber.png)
+
+![Running at least three subscribers result](assets/images/RabbitMQThreeSubscriber.png)
+
+Berdasarkan grafik *queued message*, pesan yang masuk antrian turun drastis, hal ini terjadi karena data yang dikirim oleh *publisher* akan tersebar secara merata ke tiga *subcriber* yang berjalan bersamaan. Penerimaan data yang tersebar mengurangi banyak antrian pesan karena pesan yang diterima dalam satu waktu lebih banyak dari yang sebelumnya hanya menggunakan satu *subscriber*.
