@@ -17,3 +17,9 @@ Dalam konteks `Subscriber`, AMPQ di implementasikan untuk mengubungkan antrean p
 - `guest` pertama adalah *username* pengguna yang digunakan untuk autentikasi di RabbitMQ.
 - `guest` kedua adalah *password* pengguna yang digunakan untuk autentikasi di RabbitMQ.
 - `localhost:5672` adalah *hostname* dan port dari broker AMQP. *hostname* "localhost" berarti broker AMQP diharapkan berjalan pada mesin yang sama di mana aplikasi berjalan. Sementara, port 5672 adalah port default untuk komunikasi AMQP.
+
+### Simulation slow subscriber
+
+![Simulation slow subscriber](assets/images/SimulationSlowSubscriber.png)
+
+Ketika saya mensimulasikan *slow subscriber* dan memasangkan *delay* satu detik ke *subscriber* untuk penerimaan data dari *message broker*, terdapat sekitar 25 *queued message* yang terdata. Hal ini terjadi karena ketika *publisher* saya buat mengirimkan beberapa data dalam waktu singkat, *subscriber* tidak dapat menerima data tersebut secara langsung, sehingga terbentuklah *message queue* yang menunggu penemerimaan data dari *subscriber* satu persatu. Semakin banyak data yang dikirim *publisher* semakin besar *message queue* karena akan semakin banyak pesan penerimaannya tertunda.
